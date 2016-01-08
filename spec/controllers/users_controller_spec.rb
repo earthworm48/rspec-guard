@@ -24,6 +24,7 @@ RSpec.describe UsersController, type: :controller do
     it "deletes the cookie if there is no user found with the cookied id" do
       cookies.signed["user_id"] = 42
       get :new
+      # byebug
       expect(cookies.has_key?("user_id")).to be false
     end
 
@@ -76,6 +77,7 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it "saves the user id in a cookie" do
+        # byebug
         expect(cookies.signed["user_id"]).to eq assigns[:user].id
       end
     end
@@ -86,6 +88,7 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it "creates a new account" do
+
         expect(User.count).to eq 1
       end
 
@@ -102,6 +105,7 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it "adds the referred user to the referring user's list of referrals" do
+        # byebug
         expect(user.referrals.count).to eq 1
       end
     end
